@@ -1,11 +1,11 @@
-
-
-const Tasks = () => {
+const Tasks = (props) => {
   return (
-    <div>
-        <h1>Tasks</h1>
-    </div>
-  )
-}
+    <ul className="space-y-4">
+      {props.tasks.map((task) => (
+        <li key={task.id} className="bg-neutral-400 text-white p-2 rounded-md"> {task.title}</li>
+      ))}
+    </ul>
+  );
+};
 
-export default Tasks
+export default Tasks;
