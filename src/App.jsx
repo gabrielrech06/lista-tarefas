@@ -1,6 +1,7 @@
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import { useState } from "react";
+import { v4 } from "uuid";
 
 const App = () => {
   // State (Estado) - é uma variável que pode ser alterada e que, quando alterada, faz com que o componente seja renderizado novamente.
@@ -41,14 +42,29 @@ const App = () => {
     setTasks(newTasks);
   };
 
+  const onAddTaskSubmit = (title, description) => {
+    const newTask = {
+      id: v4(),
+      title: title,
+      description: description,
+      isCompleted: false,
+    };
+
+    setTasks([...tasks, newTask]);
+  };
+
   return (
     <div className="w-screen h-screen bg-neutral-900 flex justify-center p-6">
-      <div className="w-[500px]">
-        <h1 className="text-3xl text-slate-200 font-bold text-center">
+      <div className="w-[500px] space-y-4">
+        <h1 className="text-3xl text-white font-bold text-center">
           Lista de Tarefas
         </h1>
-        <AddTask />
-        <Tasks tasks={tasks} onTaskClick={onTaskClick} onDeleteTaskClick={onDeleteTaskClick}/>
+        <AddTask onAddTaskSubmit={onAddTaskSubmit}/>
+        <Tasks
+          tasks={tasks}
+          onTaskClick={onTaskClick}
+          onDeleteTaskClick={onDeleteTaskClick}
+        />
       </div>
     </div>
   );
