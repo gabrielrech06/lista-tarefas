@@ -14,7 +14,6 @@ const App = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  // API
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await fetch(
@@ -25,7 +24,6 @@ const App = () => {
       );
       // pegar  dados da API
       const data = await response.json();
-
       // armazenar dados da API
       setTasks(data);
     };
