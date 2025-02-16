@@ -59,7 +59,7 @@ const App = () => {
         <h1 className="text-3xl text-white font-bold text-center">
           Lista de Tarefas
         </h1>
-        <AddTask onAddTaskSubmit={onAddTaskSubmit}/>
+        <AddTask onAddTaskSubmit={onAddTaskSubmit} />
         <Tasks
           tasks={tasks}
           onTaskClick={onTaskClick}
