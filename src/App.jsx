@@ -1,30 +1,17 @@
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 const App = () => {
   // State (Estado) - é uma variável que pode ser alterada e que, quando alterada, faz com que o componente seja renderizado novamente.
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Estudar React",
-      description: "Estudar React para poder criar aplicações web",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      title: "Estudar Tailwind CSS",
-      description: "Estudar Tailwind CSS para poder estilizar as aplicações",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      title: "Estudar Node.js",
-      description: "Estudar Node.js para poder criar aplicações back-end",
-      isCompleted: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks") || [])
+  );
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const onTaskClick = (taskId) => {
     const newTasks = tasks.map((task) => {
