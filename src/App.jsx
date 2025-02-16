@@ -5,9 +5,10 @@ import { v4 } from "uuid";
 
 const App = () => {
   // State (Estado) - é uma variável que pode ser alterada e que, quando alterada, faz com que o componente seja renderizado novamente.
-  const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks") || [])
-  );
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
